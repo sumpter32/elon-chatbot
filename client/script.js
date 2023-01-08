@@ -30,7 +30,7 @@ function typeText(element, text) {
         } else {
             clearInterval(interval)
         }
-    }, 18)
+    }, 15)
 }
 
 // generate unique ID for each message div of bot
