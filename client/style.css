@@ -1,124 +1,125 @@
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;300;400;500;700;800;900&display=swap");
 
-{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: "Alegreya Sans", sans-serif;
-font-weight: 500;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
 }
+
 body {
-background: #d1d2e0;
+  background: #d1d2e0;
 }
 
 #app {
-width: 100vw;
-height: 100vh;
-background: #fff8f8;
+  width: 100vw;
+  height: 100vh;
+  background: #fff8f8;
 
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #chat_container {
-flex: 1;
-width: 80%;
-height: 800%;
-overflow-y: scroll;
+  flex: 1;
+  width:  80%;
+  height: 100%;
+  overflow-y: scroll;
 
-display: flex;
-flex-direction: column;
-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
--ms-overflow-style: none;
-scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
-padding-bottom: 30px;
-scroll-behavior: smooth;
+  padding-bottom: 30px;
+  scroll-behavior: smooth;
 }
 
 /* hides scrollbar */
 #chat_container::-webkit-scrollbar {
-display: none;
+  display: none;
 }
 
 .wrapper {
-width: 100%;
-padding: 15px;
+  width: 100%;
+  padding: 15px;
 }
 
 .ai {
-background: #7278ce98;
-border-top-right-radius: 50px;
-border-top-left-radius: 0px;
-border-bottom-right-radius: 50px;
-border-bottom-left-radius: 35px;
-border: 1px solid rgba(0, 0, 0, 0.363);
+  background: #7278ce98;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 35px;
+  border: 1px solid rgba(0, 0, 0, 0.363);
 
 }
 
 .chat {
-width: 100%;
-max-width: 1280px;
-margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .profile {
-width: 36px;
-height: 36px;
-border-radius: 5px;
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
 
-background: #CB602B;
+  background: #CB602B;
 
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ai .profile {
-background: #32568F;
+  background: #32568F;
 }
 
 .profile img {
-width: 80%;
-height: 80%;
-object-fit: contain;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
 
 .message {
-flex: 1;
+  flex: 1;
 
-color: #0a0a0a;
-font-size: 20px;
+  color: #0a0a0a;
+  font-size: 20px;
 
-max-width: 100%;
-overflow-x: scroll;
+  max-width: 100%;
+  overflow-x: scroll;
 
-/*
+  /*
+   * white space refers to any spaces, tabs, or newline characters that are used to format the CSS code
+   * specifies how white space within an element should be handled. It is similar to the "pre" value, which tells the browser to treat all white space as significant and to preserve it exactly as it appears in the source code.
+   * The pre-wrap value allows the browser to wrap long lines of text onto multiple lines if necessary.
+   * The default value for the white-space property in CSS is "normal". This tells the browser to collapse multiple white space characters into a single space, and to wrap text onto multiple lines as needed to fit within its container.
+  */
+  white-space: pre-wrap; 
 
-white space refers to any spaces, tabs, or newline characters that are used to format the CSS code
-specifies how white space within an element should be handled. It is similar to the "pre" value, which tells the browser to treat all white space as significant and to preserve it exactly as it appears in the source code.
-The pre-wrap value allows the browser to wrap long lines of text onto multiple lines if necessary.
-The default value for the white-space property in CSS is "normal". This tells the browser to collapse multiple white space characters into a single space, and to wrap text onto multiple lines as needed to fit within its container.
-*/
-white-space: pre-wrap;
--ms-overflow-style: none;
-scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* hides scrollbar */
 .message::-webkit-scrollbar {
-display: none;
+  display: none;
 }
 
-.form-container {
+form {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
@@ -129,48 +130,10 @@ display: none;
   border-top-right-radius: 20px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
 }
 
-.form-container label {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container textarea {
-  width: 100%;
-  color: rgb(37, 37, 39);
-  font-size: 18px;
-  padding: 10px;
-  background: transparent;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  border: 1px solid #ccc;
-}
-
-.form-container textarea {
-  resize: none;
-}
-
-.form-container input[type="submit"] {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #32568F;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.form-container input[type="submit"]:hover {
-  background-color: #234070;
-}
 textarea {
   width: 100%;
 
