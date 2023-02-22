@@ -66,7 +66,7 @@ function generateUniqueId() {
   return `id-${timestamp}-${hexadecimalString}`;
 }
 
-function chatStripe(isAi, value, uniqueId) {
+function chatStripe(isAi, value, uniqueId, options) {
   return (
     `
     <div class="wrapper ${isAi && 'ai'}">
@@ -77,12 +77,16 @@ function chatStripe(isAi, value, uniqueId) {
             alt="${isAi ? 'bot' : 'user'}" 
           />
         </div>
-        <div class="message" id=${uniqueId}>${value}</div>
+        <div class="message" id=${uniqueId}>
+          ${value}
+          ${options ? `<div class="options">${options.map(option => `<button>${option}</button>`).join('')}</div>` : ''}
+        </div>
       </div>
     </div>
   `
   );
 }
+
 
 const handleSubmit = async (e) => {
   e.preventDefault();
