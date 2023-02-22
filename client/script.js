@@ -5,7 +5,7 @@ const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
 const options = ["Option 1", "Option 2"];
 
-async function getBotResponse(conversation_history, user_input, options) {
+async function get_response(conversation_history, user_input) {
   const response = await fetch('https://lincon-chat-bot.onrender.com/', {
     method: 'POST',
     headers: {
@@ -13,17 +13,15 @@ async function getBotResponse(conversation_history, user_input, options) {
     },
     body: JSON.stringify({
       prompt: conversation_history + "\nUser: " + user_input + "\nChatbot:",
-      options: options
-    })
+    }),
   });
 
-  if (response.ok) {
-    const data = await response.json();
-    return data.bot.trim(); // trims any trailing spaces/'\n'
-  } else {
-    const err = await response.text();
-    throw new Error(err);
+  if (!response.ok) {
+    throw new Error('Failed to get response from server');
   }
+
+  const data = await response.json();
+  return data.bot.trim();
 }
 
 let loadInterval;
@@ -66,7 +64,7 @@ function generateUniqueId() {
   return `id-${timestamp}-${hexadecimalString}`;
 }
 
-function chatStripe(isAi, value, uniqueId, options) {
+function chatStripe(isAi, value, uniqueId, isOption = false, optionsList = []) {
   return (
     `
     <div class="wrapper ${isAi && 'ai'}">
@@ -79,14 +77,17 @@ function chatStripe(isAi, value, uniqueId, options) {
         </div>
         <div class="message" id=${uniqueId}>
           ${value}
-          ${options ? `<div class="options">${options.map(option => `<button>${option}</button>`).join('')}</div>` : ''}
+          ${isOption && Array.isArray(optionsList) ? `
+            <div class="options">
+              ${optionsList.map(option => `<button>${option}</button>`).join('')}
+            </div>
+          ` : ''}
         </div>
       </div>
     </div>
   `
   );
 }
-
 
 const handleSubmit = async (e) => {
   e.preventDefault();
