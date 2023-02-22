@@ -3,6 +3,9 @@ import user from './assets/user.svg'
 
 const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
+const options = ["Option 1", "Option 2"];
+const chatbot_response = await get_response(conversation_history, user_input, options);
+
 
 let loadInterval
 
@@ -30,7 +33,7 @@ function typeText(element, text) {
         } else {
             clearInterval(interval)
         }
-    }, 15)
+    }, 19)
 }
 
 // generate unique ID for each message div of bot
@@ -74,6 +77,7 @@ const handleSubmit = async (e) => {
     form.reset()
 
     // bot's chatstripe
+    const conversation_history = chatContainer.textContent;
     const uniqueId = generateUniqueId()
     chatContainer.innerHTML += chatStripe(true, " ", uniqueId)
 
@@ -86,13 +90,13 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
-    const response = await fetch('https://elon-z1dq.onrender.com/', {
+    const response = await fetch('https://lincon-chat-bot.onrender.com/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            prompt: data.get('prompt')
+            prompt: conversation_history + "\nUser: " + data.get('prompt') + "\nChatbot:"
         })
     })
 
@@ -118,3 +122,4 @@ form.addEventListener('keyup', (e) => {
         handleSubmit(e)
     }
 })
+ 
